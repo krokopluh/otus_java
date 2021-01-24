@@ -1,1 +1,1 @@
-# otus_java
+# OTUS' "Java Professional course" homework repository  

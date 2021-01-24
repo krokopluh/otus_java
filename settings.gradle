@@ -1,0 +1,2 @@
+rootProject.name = 'otus.java-pro.vmg'
+include 'hw01-gradle'
