@@ -3,6 +3,7 @@ package homework;
 
 import java.util.Comparator;
 import java.util.Map;
+import java.util.NavigableMap;
 import java.util.TreeMap;
 
 public class CustomerService {
@@ -10,8 +11,7 @@ public class CustomerService {
     //todo: 3. надо реализовать методы этого класса
     //важно подобрать подходящую Map-у, посмотрите на редко используемые методы, они тут полезны
     //create map as a field
-    private Comparator<Customer> comparator = Customer::compareTo;
-    private TreeMap<Customer,String> customerDataMap = new TreeMap<>(comparator);
+    private final NavigableMap<Customer, String> customerDataMap = new TreeMap<>(Comparator.comparingLong(Customer::getScores));
 
     public Map.Entry<Customer, String> getSmallest(){
         //Возможно, чтобы реализовать этот метод, потребуется посмотреть как Map.Entry сделан в jdk
@@ -20,7 +20,10 @@ public class CustomerService {
     }
 
     public Map.Entry<Customer, String> getNext(Customer customer) {
-        return customerDataMap.higherEntry(customer);
+        Map.Entry<Customer,String> highestEntry =  customerDataMap.higherEntry(customer);
+        if (highestEntry==null) return null;
+        return new CustomerDataMapEntry(new Customer(highestEntry.getKey()),highestEntry.getValue());
+
     }
 
     public void add(Customer customer, String data) {
