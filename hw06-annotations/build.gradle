@@ -5,14 +5,6 @@ plugins {
 sourceCompatibility = JavaVersion.VERSION_15
 targetCompatibility = JavaVersion.VERSION_15
 
-//group 'otus.javaPro.vmg'
-//version 'unspecified'
-//
-//repositories {
-//    mavenCentral()
-//}
-
-
 dependencies {
     compile ('org.assertj:assertj-core')
 }
