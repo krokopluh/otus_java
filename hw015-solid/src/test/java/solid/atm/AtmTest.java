@@ -75,7 +75,7 @@ public class AtmTest {
                 "Denomination: 100, notes amount: 0\n" +
                 "Denomination: 50, notes amount: 0\n" +
                 "Denomination: 10, notes amount: 0\n" +
-                "Denomination: 5, notes amount: 0";
+                "Denomination: 5, notes amount: 0\n";
 
         assertThat(atm.outputCellsContent()).isEqualTo(expectedResult);
     }
