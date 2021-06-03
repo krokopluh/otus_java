@@ -93,6 +93,19 @@ public class AtmTest {
         String actualMessage = exception.getMessage();
 
         assertThat(actualMessage).isEqualTo(expectedMessage);
+
+        String expectedResult = "Denomination: 5000, notes amount: 1\n" +
+                "Denomination: 2000, notes amount: 0\n" +
+                "Denomination: 1000, notes amount: 5\n" +
+                "Denomination: 500, notes amount: 0\n" +
+                "Denomination: 200, notes amount: 10\n" +
+                "Denomination: 100, notes amount: 0\n" +
+                "Denomination: 50, notes amount: 3\n" +
+                "Denomination: 10, notes amount: 0\n" +
+                "Denomination: 5, notes amount: 0\n";
+
+        assertThat(atm.outputCellsContent()).isEqualTo(expectedResult);
+
     }
 
     @Test
