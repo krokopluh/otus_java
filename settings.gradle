@@ -2,4 +2,5 @@ rootProject.name = 'otus.javaPro.vmg'
 include 'hw01-gradle'
 include 'hw04-generics'
 include 'hw06-annotations'
+include 'hw15-structural-patterns'
 
