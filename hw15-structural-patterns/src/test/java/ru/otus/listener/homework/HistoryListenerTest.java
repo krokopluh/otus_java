@@ -16,7 +16,7 @@ import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
 class HistoryListenerTest {
 
     @Test
-    void ListenerTest() {
+    void listenerTest() {
         //given
         var historyListener = new HistoryListener();
 

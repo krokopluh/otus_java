@@ -119,7 +119,7 @@ class ComplexProcessorTest {
 
         Processor processor = new ProcessorTimeDependant(clock);
 
-        Exception exception = assertThrows(Exception.class, () -> {
+        assertThrows(Exception.class, () -> {
             processor.process(message);
         });
 
