@@ -1,15 +1,13 @@
 package solid.atm;
 
-public class Note {
+import solid.atm.interfaces.INote;
+
+public class Note implements INote {
 
     private final EDenomination denomination;
 
     public Note(EDenomination denomination) {
         this.denomination = denomination;
-    }
-
-    public Integer getValue(){
-        return denomination.getValue();
     }
 
     public EDenomination getDenomination() {

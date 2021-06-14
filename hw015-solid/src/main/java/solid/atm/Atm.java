@@ -1,13 +1,17 @@
 package solid.atm;
 
+import solid.atm.interfaces.IAtm;
+import solid.atm.interfaces.ICell;
+import solid.atm.interfaces.INote;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
 
-public class Atm {
+public class Atm implements IAtm {
 
-    private final HashMap<EDenomination,Cell> cells = new HashMap<>();
+    private final HashMap<EDenomination,ICell> cells = new HashMap<>();
 
     public Atm(){
         for(EDenomination denomination: EDenomination.values()){
@@ -27,7 +31,7 @@ public class Atm {
         }
     }
 
-
+    @Override
     public void giveOutMoney(Integer amount) throws Exception {
 
         List<EDenomination> denominationsList = EDenomination.getDescendingListOfDenominations();
@@ -36,7 +40,7 @@ public class Atm {
             if(cells.get(denomination).getNotesAmount()>0) {
                 Integer denValue = denomination.getValue();
                 if (remainder >= denValue){
-                    Cell currentCell = cells.get(denomination);
+                    ICell currentCell = cells.get(denomination);
                     remainder = currentCell.reserveMoneyAndReturnRemainder(remainder);
                     if (remainder==0){
                         giveOutReservedNotes();
@@ -53,17 +57,19 @@ public class Atm {
         this.cells.put(denomination,new Cell(denomination));
     }
 
-    public void addNotes(ArrayList<Note> notes){
-        for(Note note : notes){
+    @Override
+    public void addNotes(ArrayList<? extends INote> notes){
+        for(INote note : notes){
             addNote(note);
         }
     }
 
-    private void addNote(Note note){
+    private void addNote(INote note){
         EDenomination denomination = note.getDenomination();
         cells.get(denomination).addNote();
     }
 
+    @Override
     public Integer getOverallMoneyAmount(){
 
         Integer moneyAmount = 0;

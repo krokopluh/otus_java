@@ -1,6 +1,8 @@
 package solid.atm;
 
-public class Cell {
+import solid.atm.interfaces.ICell;
+
+public class Cell implements ICell {
 
     private final EDenomination denomination;
 
@@ -11,18 +13,22 @@ public class Cell {
         this.denomination = denomination;
     }
 
+    @Override
     public Integer getNotesAmount() {
         return notesAmount;
     }
 
+    @Override
     public Integer getMoneyAmount() {
         return notesAmount*denomination.getValue();
     }
 
+    @Override
     public void addNote() {
         notesAmount += 1;
     }
 
+    @Override
     public Integer reserveMoneyAndReturnRemainder(Integer moneyAmount){
 
         Integer currentNotesAmount = moneyAmount / denomination.getValue();
@@ -38,10 +44,12 @@ public class Cell {
         return remainder;
     }
 
+    @Override
     public void giveOutReservedNotes(){
         reservedNotesAmount = 0;
     }
 
+    @Override
     public void releaseReservedNotes(){
         notesAmount = notesAmount + reservedNotesAmount;
         reservedNotesAmount = 0;

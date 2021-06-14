@@ -3,7 +3,7 @@ package solid.atm;
 import java.util.Arrays;
 import java.util.List;
 
-public enum EDenomination {
+public enum EDenomination{
 
     FIVE(5),
     TEN(10),
