@@ -8,7 +8,7 @@ import java.util.Optional;
 
 public class HistoryListener implements Listener, HistoryReader {
 
-    HashMap<Long,MessageDataStorage> inMemoryDb = new HashMap<>();
+    private final HashMap<Long,MessageDataStorage> inMemoryDb = new HashMap<>();
 
 
     @Override
