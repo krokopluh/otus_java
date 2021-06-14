@@ -19,18 +19,6 @@ public class Atm implements IAtm {
         }
     }
 
-    private void giveOutReservedNotes(){
-        for(EDenomination denomination : cells.keySet()){
-            cells.get(denomination).giveOutReservedNotes();
-        }
-    }
-
-    private void releaseReservedNotes(){
-        for(EDenomination denomination : cells.keySet()){
-            cells.get(denomination).releaseReservedNotes();
-        }
-    }
-
     @Override
     public void giveOutMoney(Integer amount) throws Exception {
 
@@ -53,20 +41,11 @@ public class Atm implements IAtm {
         throw new Exception("ATM can't give out requested amount of money.");
     }
 
-    public void addCell(EDenomination denomination){
-        this.cells.put(denomination,new Cell(denomination));
-    }
-
     @Override
     public void addNotes(ArrayList<? extends INote> notes){
         for(INote note : notes){
             addNote(note);
         }
-    }
-
-    private void addNote(INote note){
-        EDenomination denomination = note.getDenomination();
-        cells.get(denomination).addNote();
     }
 
     @Override
@@ -79,6 +58,10 @@ public class Atm implements IAtm {
         return moneyAmount;
     }
 
+    public void addCell(EDenomination denomination){
+        this.cells.put(denomination,new Cell(denomination));
+    }
+
     public String outputCellsContent(){
 
         StringBuilder stringBuilder = new StringBuilder();
@@ -87,6 +70,23 @@ public class Atm implements IAtm {
             stringBuilder.append(String.format("Denomination: %s, notes amount: %s\n", denomination.getValue(),cells.get(denomination).getNotesAmount()));
         }
         return stringBuilder.toString();
+    }
+
+    private void giveOutReservedNotes(){
+        for(EDenomination denomination : cells.keySet()){
+            cells.get(denomination).giveOutReservedNotes();
+        }
+    }
+
+    private void releaseReservedNotes(){
+        for(EDenomination denomination : cells.keySet()){
+            cells.get(denomination).releaseReservedNotes();
+        }
+    }
+
+    private void addNote(INote note){
+        EDenomination denomination = note.getDenomination();
+        cells.get(denomination).addNote();
     }
 
 
